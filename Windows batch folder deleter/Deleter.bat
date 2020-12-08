@@ -15,9 +15,10 @@ if not exist %1 (
 SetLocal EnableDelayedExpansion
 set _isEmpty=
 
-for /D %%a in ("%1\*") DO ( rem This for is to iterate each folder inside the route
-set _TMP= rem We need to clean the 
-for /f %%b in ('dir /a /b %%a') do set _TMP=%%b rem This for is to iterate each file inside the folder, to see if it contains data, /a shows all, /b grabs the file name
+for /D %%a in ("%1\*") DO ( 
+set _TMP=
+
+for /f %%b in ('dir /a /b %%a') do set _TMP=%%b 
 
 IF NOT DEFINED _TMP (
   echo %%a is Empty, proceed to delete it........
@@ -25,7 +26,7 @@ IF NOT DEFINED _TMP (
 ) ELSE (
   Echo %%a is Not Empty
 )
-							 )
+			  )							 
 exit /b
 :Error
 Echo %_errorMessage%
